@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 	// create a new status bar item that we can now manage
-	let myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+	let myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 150);
 	context.subscriptions.push(myStatusBarItem);
 
 	myStatusBarItem.command = 'time-countdown.startTimer';
