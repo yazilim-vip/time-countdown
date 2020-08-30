@@ -16,14 +16,21 @@ export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('time-countdown.startTimer', () => {
 		// The code you place here will be executed every time your command is executed
 
-		// Display a message box to the user
-		setTimeout(function(){
-			vscode.window.showInformationMessage('Hello World from Time Countdown!');
-		}, 10 * 1000);
+		// User Input to name Gist file
+		const name = vscode.window.showInputBox({
+			placeHolder: "Name Your GistTest"
+		});
+		name.then(function (data) {
+			// Display a message box to the user
+			setTimeout(function () {
+				vscode.window.showInformationMessage('Hello ' + data);
+			}, 10 * 1000);
+		});
+
 	});
 
 	context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
