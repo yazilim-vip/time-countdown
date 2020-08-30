@@ -11,9 +11,6 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "time-countdown" is now active!');
 
 
-
-	console.log('here');
-
 	// create a new status bar item that we can now manage
 	let myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
 	context.subscriptions.push(myStatusBarItem);
@@ -60,6 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
 					var timeleft = totalTimeInSec;
 					var timer = setInterval(function(){
 					  if(timeleft <= 0){
+						  vscode.window.showInformationMessage(`Hands Up!!!`);
 						myStatusBarItem.text = `Start Time`;
 						clearInterval(timer);
 					  } else{
@@ -68,12 +66,6 @@ export function activate(context: vscode.ExtensionContext) {
 					  }
 					}, 1000);
 
-					
-				
-					// Display a message box to the user
-					setTimeout(function () {
-						vscode.window.showInformationMessage(`Hands Up!!!`);
-					}, (totalTimeInSec + 1) * 1000);
 				}
 			}
 
