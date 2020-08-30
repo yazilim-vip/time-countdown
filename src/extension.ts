@@ -17,14 +17,42 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 
 		// User Input to name Gist file
-		const name = vscode.window.showInputBox({
-			placeHolder: "Name Your GistTest"
-		});
-		name.then(function (data) {
-			// Display a message box to the user
-			setTimeout(function () {
-				vscode.window.showInformationMessage('Hello ' + data);
-			}, 10 * 1000);
+
+		vscode.window.showInputBox({
+			placeHolder: "Time Amount to Wait"
+		}).then(function (data) {
+
+			let regex = /(^\d+h([0-9]|[1-5][0-9])m\s([0-9]|[1-5][0-9])s$|^\d+h ([0-9]|[1-5][0-9])m$|^\d+h ([0-9]|[1-5][0-9])s$|^\dm\s([0-9]|[1-5][0-9])+s$|^\dh$|^\dm$|^\d+s$)/;
+			if (data === undefined) {
+				vscode.window.showInformationMessage('Time Format Undefined' + data);
+			} else {
+				let match = data.match(regex);
+				if (match === null) {
+					vscode.window.showInformationMessage('Time Format Undefined' + data);
+				} else {
+					let totalTimeInSec: number = 0;
+				
+					var slices: string[] = data.split(' ');
+					slices.forEach(function (slice) {
+						if (data.indexOf('h') !== -1) {
+							let hour: number = parseInt(slice.split('h')[0]);
+							totalTimeInSec = totalTimeInSec + (hour * 60 * 60);
+						} else if (data.indexOf('m') !== -1) {
+							let minute: number = parseInt(slice.split('m')[0]);
+							totalTimeInSec = totalTimeInSec + (minute * 60 * 60);
+						} else if (data.indexOf('s') !== -1) {
+							let second: number = parseInt(slice.split('s')[0]);
+							totalTimeInSec = totalTimeInSec + (second);
+						}
+					});
+
+					// Display a message box to the user
+					setTimeout(function () {
+						vscode.window.showInformationMessage(`Hello Total Time ${totalTimeInSec}`);
+					}, totalTimeInSec * 1000);
+				}
+			}
+
 		});
 
 	});
