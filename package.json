@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:time-countdown.helloWorld"
+		"onCommand:time-countdown.startTimer"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "time-countdown.helloWorld",
-				"title": "Hello World"
+				"command": "time-countdown.startTimer",
+				"title": "Start Timer"
 			}
 		]
 	},
