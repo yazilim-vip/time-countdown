@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:time-countdown.startTimer"
+		"onCommand:time-countdown.startTimer", 
+		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
 	"contributes": {

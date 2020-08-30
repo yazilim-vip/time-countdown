@@ -10,13 +10,24 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "time-countdown" is now active!');
 
+
+
+	console.log('here');
+
+	// create a new status bar item that we can now manage
+	let myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+	context.subscriptions.push(myStatusBarItem);
+
+	myStatusBarItem.command = 'time-countdown.startTimer';
+	myStatusBarItem.text = `Start Timer`;
+	myStatusBarItem.show();
+
+
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('time-countdown.startTimer', () => {
 		// The code you place here will be executed every time your command is executed
-
-		// User Input to name Gist file
 
 		vscode.window.showInputBox({
 			placeHolder: "Time Amount to Wait"
@@ -24,11 +35,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 			let regex = /(^\d+h([0-9]|[1-5][0-9])m\s([0-9]|[1-5][0-9])s$|^\d+h ([0-9]|[1-5][0-9])m$|^\d+h ([0-9]|[1-5][0-9])s$|^\dm\s([0-9]|[1-5][0-9])+s$|^\dh$|^\dm$|^\d+s$)/;
 			if (data === undefined) {
-				vscode.window.showInformationMessage('Time Format Undefined' + data);
+				vscode.window.showInformationMessage('Time Format Undefined');
 			} else {
 				let match = data.match(regex);
 				if (match === null) {
-					vscode.window.showInformationMessage('Time Format Undefined' + data);
+					vscode.window.showInformationMessage(`Time Format Undefined ${data}`);
 				} else {
 					let totalTimeInSec: number = 0;
 				
@@ -46,17 +57,29 @@ export function activate(context: vscode.ExtensionContext) {
 						}
 					});
 
+					var timeleft = totalTimeInSec;
+					var timer = setInterval(function(){
+					  if(timeleft <= 0){
+						myStatusBarItem.text = `Start Time`;
+						clearInterval(timer);
+					  } else{
+						  myStatusBarItem.text = `Time Left (${timeleft})`;
+						  timeleft -= 1;
+					  }
+					}, 1000);
+
+					
+				
 					// Display a message box to the user
 					setTimeout(function () {
-						vscode.window.showInformationMessage(`Hello Total Time ${totalTimeInSec}`);
-					}, totalTimeInSec * 1000);
+						vscode.window.showInformationMessage(`Hands Up!!!`);
+					}, (totalTimeInSec + 1) * 1000);
 				}
 			}
 
 		});
 
 	});
-
 	context.subscriptions.push(disposable);
 }
 
