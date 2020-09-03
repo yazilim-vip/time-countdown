@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:time-countdown.startTimer", 
+		"onCommand:time-countdown.startTimer",
+		"onCommand:time-countdown.stopTimer",
 		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
@@ -19,6 +20,10 @@
 			{
 				"command": "time-countdown.startTimer",
 				"title": "Start Timer"
+			},
+			{
+				"command": "time-countdown.stopTimer",
+				"title": "Stop Timer"
 			}
 		]
 	},
