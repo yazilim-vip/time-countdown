@@ -29,7 +29,7 @@ export class TimerCountdown {
 		let timerCountdown : TimerCountdown = this;
 		vscode.window.showInputBox({
 			placeHolder: "Time Amount to Wait"
-		}).then(function(data) {userInputHandler(timerCountdown, data)});
+		}).then(function(data) {userInputHandler(timerCountdown, data);});
 	}
 
 	stopTimer() {
