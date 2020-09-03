@@ -3,6 +3,7 @@
 	"displayName": "Time Countdown",
 	"description": "Time Countdown for VS Code",
 	"version": "0.0.1",
+	"publisher":"yazilim-vip",
 	"engines": {
 		"vscode": "^1.48.0"
 	},
@@ -47,5 +48,9 @@
 		"mocha": "^8.0.1",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.4.0"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://bitbucket.org/yazilimvip/time-countdown.git"
+	  }
 }

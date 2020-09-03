@@ -2,7 +2,7 @@ import { StatusBarItem } from 'vscode';
 import * as vscode from 'vscode';
 //import {Timeout} from 'NodeJs';
 
-const REGEX = /(^\d+h([0-9]|[1-5][0-9])m\s([0-9]|[1-5][0-9])s$|^\d+h ([0-9]|[1-5][0-9])m$|^\d+h ([0-9]|[1-5][0-9])s$|^\dm\s([0-9]|[1-5][0-9])+s$|^\dh$|^\dm$|^\d+s$)/;
+const REGEX = /(^\d+h([0-9]|[1-5][0-9])m\s([0-9]|[1-5][0-9])s$|^\d+h ([0-9]|[1-5][0-9])m$|^\d+h ([0-9]|[1-5][0-9])s$|^\d+m\s([0-9]|[1-5][0-9])s$|^\d+h$|^\d+m$|^\d+s$)/;
 
 export class TimerCountdown {
 
