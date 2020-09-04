@@ -73,13 +73,13 @@ function getTotalTimeInSec(userInput: string): number {
 
 	var slices: string[] = userInput.split(' ');
 	slices.forEach(function (slice) {
-		if (userInput.indexOf('h') !== -1) {
+		if (slice.indexOf('h') !== -1) {
 			let hour: number = parseInt(slice.split('h')[0]);
 			totalTimeInSec = totalTimeInSec + (hour * 60 * 60);
-		} else if (userInput.indexOf('m') !== -1) {
+		} else if (slice.indexOf('m') !== -1) {
 			let minute: number = parseInt(slice.split('m')[0]);
 			totalTimeInSec = totalTimeInSec + (minute * 60);
-		} else if (userInput.indexOf('s') !== -1) {
+		} else if (slice.indexOf('s') !== -1) {
 			let second: number = parseInt(slice.split('s')[0]);
 			totalTimeInSec = totalTimeInSec + (second);
 		}
@@ -87,14 +87,26 @@ function getTotalTimeInSec(userInput: string): number {
 	return totalTimeInSec;
 }
 
+function sec2ReadableFormat(input:number){
+	var result = (input % 60 + "s");
+	if(input >= 60){
+		result = Math.floor((input - (3600 * Math.floor(input / 3600))) / 60) + "m " + result;
+	}
+	if(input >= 3600){
+		result = Math.floor(input / 3600) + "h " + result;
+	}
+	return result;
+}
+
+
 // Update user notifications when triggered.
 function countDownLoop(timerCountdown : TimerCountdown) {
-
+	
 	if (timerCountdown.timeLeft === undefined || timerCountdown.timeLeft <= 0) {
 		vscode.window.showInformationMessage(`Hands Up!!!`);
 		timerCountdown.stopTimer();
 	} else {
-		timerCountdown.myStatusBarItem.text = `Time Left (${timerCountdown.timeLeft})`;
+		timerCountdown.myStatusBarItem.text = `Time Left (${sec2ReadableFormat(timerCountdown.timeLeft)})`;
 		timerCountdown.timeLeft -= 1;
 	}
 
