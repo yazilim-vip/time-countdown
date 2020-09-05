@@ -1,5 +1,5 @@
 # Introduction
-This extension takes care of the time countdown tasks. It is very easy to use. Please contact us if you have any suggestions about the extension.
+This extension takes care of the time countdown tasks. It is very easy to use. Please contact us from `vscode@yazilim.vip` if you have any suggestions about the extension.
 
 # Usage
 
